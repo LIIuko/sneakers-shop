@@ -59,6 +59,12 @@
     height: 20px;
 }
 
+.button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 .img{
 
 }
