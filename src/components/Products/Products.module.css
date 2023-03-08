@@ -1,0 +1,48 @@
+.container{
+    margin: 0 60px;
+}
+
+.container__header{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container__title{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    margin: 40px 0;
+    padding: 0;
+
+    color: #000000;
+}
+
+.search{
+    padding: 18px 15px;
+    height: 45px;
+    width: 250px;
+    border: 1px solid #F3F3F3;
+    border-radius: 10px;
+}
+
+.search, .search::placeholder {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #C4C4C4;
+}
+
+.container__products{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    /*margin: 0 -20px;*/
+}
