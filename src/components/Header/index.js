@@ -1,11 +1,11 @@
 export const openCart = () => {
-    console.log("Hello");
+    console.log("cart");
 }
 
 export const openLike = () => {
-    console.log("Hello");
+    console.log("like");
 }
 
 export const openProfile = () => {
-    console.log("Hello");
+    console.log("profile");
 }

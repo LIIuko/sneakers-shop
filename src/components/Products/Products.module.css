@@ -41,8 +41,9 @@
 }
 
 .container__products{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     width: 100%;
-    margin: -26px 0;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding-bottom: 20px;
 }

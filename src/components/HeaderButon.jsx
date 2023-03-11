@@ -1,9 +1,10 @@
 import React from 'react';
+import classes from "./CustomButton.module.css";
 
-const HeaderButton = ({img, imgStyle, ...props}) => {
+const HeaderButton = ({img, ...props}) => {
     return (
-        <button {...props}>
-            <img className={imgStyle} src={img} alt=""/>
+        <button className={classes.button} {...props}>
+            <img src={img} alt=""/>
         </button>
     );
 };
