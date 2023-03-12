@@ -2,17 +2,18 @@ import React from 'react';
 import classes from "./CartItem.module.css";
 import HeaderButton from "../HeaderButon";
 import deleteImg from "../../assets/products/delete.png"
-import sneakerImg from "../../assets/products/image.jpg"
+import SneakersService from "../../utils/SneakersService";
 
-const CartItem = () => {
+const CartItem = ({sneaker}) => {
+
     return (
         <div className={classes.container}>
-            <img className={classes.item__img} src={sneakerImg} alt=""/>
+            <img className={classes.item__img} src={sneaker.srcImg} alt=""/>
             <div className={classes.item__info}>
-                <h3 className={classes.item__title}>Мужские Кроссовки Nike Air Max 270</h3>
-                <span className={classes.item__price}>12 999 руб.</span>
+                <h3 className={classes.item__title}>{sneaker.title}</h3>
+                <span className={classes.item__price}>{sneaker.price} руб.</span>
             </div>
-            <HeaderButton img={deleteImg}/>
+            <HeaderButton img={deleteImg} onClick={() => SneakersService.deleteSneaker(sneaker.id)}/>
         </div>
     );
 };

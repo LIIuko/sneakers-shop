@@ -1,11 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./Cart.module.css";
 import CartItem from "./CartItem";
 import buyImg from '../../assets/products/buy.svg'
 import HeaderButton from "../HeaderButon";
 import deleteImg from "../../assets/products/delete.png";
+import {useFetching} from "../../hooks/useFetching";
+import SneakersService from "../../utils/SneakersService";
 
 const Cart = ({onClose}) => {
+
+    const [sneakers, setSneakers] = useState([]);
+    const [isLoading, error, fetching] = useFetching(async () => {
+        const response = await SneakersService.getCartSneakers();
+        setSneakers(response.data);
+    });
+
+    useEffect( (sneakers) => {
+        fetching();
+    },[sneakers])
+
     return (
         <div className={classes.background}>
             <div className={classes.container__cart}>
@@ -14,16 +27,9 @@ const Cart = ({onClose}) => {
                     <HeaderButton onClick={onClose()} img={deleteImg}/>
                 </div>
                 <div className={classes.cart__list}>
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
+                    {sneakers.map(sneaker => (
+                            <CartItem key={sneaker.id} sneaker={sneaker}/>
+                    ))}
                 </div>
                 <div className={classes.result__block}>
                     <div className={classes.summ__result}>
