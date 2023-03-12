@@ -10,14 +10,19 @@ import SneakersService from "../../utils/SneakersService";
 const Cart = ({onClose}) => {
 
     const [sneakers, setSneakers] = useState([]);
+    const [totalSumm, setTotalSum] = useState(0);
+
     const [isLoading, error, fetching] = useFetching(async () => {
         const response = await SneakersService.getCartSneakers();
         setSneakers(response.data);
+        const sum = [...sneakers].reduce((sum, sneaker) => sum+sneaker.price, 0);
+        setTotalSum(sum);
     });
 
     useEffect( (sneakers) => {
         fetching();
     },[sneakers])
+
 
     return (
         <div className={classes.background}>
@@ -35,12 +40,12 @@ const Cart = ({onClose}) => {
                     <div className={classes.summ__result}>
                         <span className={classes.total}>Итого: </span>
                         <span className={classes.between}></span>
-                        <span className={classes.total__price}>21 498 руб.</span>
+                        <span className={classes.total__price}>{totalSumm} руб.</span>
                     </div>
                     <div className={classes.summ__result}>
                         <span className={classes.total}>Налог 5%: </span>
                         <span className={classes.between}></span>
-                        <span className={classes.total__price}>1074 руб.</span>
+                        <span className={classes.total__price}>{Math.round(totalSumm*5) / 100} руб.</span>
                     </div>
                     <button className={classes.buy}>
                         <span></span>
