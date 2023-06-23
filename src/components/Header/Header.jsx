@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./Header.module.css";
 import logoImg from '../../assets/header/logo.png'
 import cartImg from '../../assets/header/cart.svg'
@@ -9,16 +9,22 @@ import {openLike, openProfile} from "./index";
 import Cart from "../Cart/Cart";
 import {useSomeState} from "../../hooks/setState";
 
-const Header = () => {
+
+const Header = ({sneakersCart, deleteFromCart}) => {
 
     const [openCart, setOpenCart] = useSomeState(false, true);
+    const [totalSum, setTotalSum] = useState(0);
+    useEffect( () => {
+        const sum = [...sneakersCart].reduce((sum, sneaker) => sum+sneaker.price, 0);
+        setTotalSum(sum);
+    },[sneakersCart])
 
     return (
         <div className={classes.navbar}>
             {
                 openCart
                     ?
-                    <Cart onClose={() => setOpenCart}/>
+                    <Cart deleteFromCart={deleteFromCart} sneakersCart={sneakersCart} onClose={() => setOpenCart}/>
                     :
                     <></>
             }
@@ -32,14 +38,14 @@ const Header = () => {
             <ul className={classes.order}>
                 <li className={classes.container__img}>
                     <HeaderButton onClick={setOpenCart} img={cartImg} className={classes.button}/>
-                    <span className={classes.price}>1205 руб.</span>
+                    <span className={classes.price}>{totalSum} руб.</span>
                 </li>
-                <li className={classes.container__img}>
-                    <HeaderButton onClick={openLike} img={likeImg} className={classes.button}/>
-                </li>
-                <li className={classes.container__img}>
-                    <HeaderButton onClick={openProfile} img={profileImg} className={classes.button}/>
-                </li>
+                {/*<li className={classes.container__img}>*/}
+                {/*    <HeaderButton onClick={openLike} img={likeImg} className={classes.button}/>*/}
+                {/*</li>*/}
+                {/*<li className={classes.container__img}>*/}
+                {/*    <HeaderButton onClick={openProfile} img={profileImg} className={classes.button}/>*/}
+                {/*</li>*/}
             </ul>
         </div>
     );

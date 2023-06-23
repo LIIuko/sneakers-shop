@@ -1,20 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import classes from "./Products.module.css";
 import ProductItem from "./ProductItem";
-import SneakersService from "../../utils/SneakersService";
-import {useFetching} from "../../hooks/useFetching";
 
-const Products = () => {
-
-    const [sneakers, setSneakers] = useState([]);
-    const [isLoading, error, fetching] = useFetching(async () => {
-        const response = await SneakersService.getAllSneakers();
-        setSneakers(response.data);
-    });
-
-    useEffect( () => {
-        fetching();
-    },[])
+const Products = ({sneakers, isLoading, sneakersCart, addToCart}) => {
 
     return (
         <div className={classes.container}>
@@ -28,7 +16,10 @@ const Products = () => {
                     <></>
                     :
                     sneakers.map(sneaker => (
-                        <ProductItem key={sneaker.id} sneaker={sneaker}/>
+                        <ProductItem key={sneaker.id}
+                                     sneaker={sneaker}
+                                     add={sneakersCart.find(sneakerCart => sneakerCart.id === sneaker.id)}
+                                     addToCart={addToCart}/>
                     ))
                 }
             </div>

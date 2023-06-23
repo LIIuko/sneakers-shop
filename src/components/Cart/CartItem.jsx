@@ -2,9 +2,8 @@ import React from 'react';
 import classes from "./CartItem.module.css";
 import HeaderButton from "../HeaderButon";
 import deleteImg from "../../assets/products/delete.png"
-import SneakersService from "../../utils/SneakersService";
 
-const CartItem = ({sneaker}) => {
+const CartItem = ({sneaker, deleteFromCart}) => {
 
     return (
         <div className={classes.container}>
@@ -13,7 +12,7 @@ const CartItem = ({sneaker}) => {
                 <h3 className={classes.item__title}>{sneaker.title}</h3>
                 <span className={classes.item__price}>{sneaker.price} руб.</span>
             </div>
-            <HeaderButton img={deleteImg} onClick={() => SneakersService.deleteSneaker(sneaker.id)}/>
+            <HeaderButton img={deleteImg} onClick={(event) => deleteFromCart(sneaker)}/>
         </div>
     );
 };
