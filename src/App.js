@@ -4,7 +4,6 @@ import Products from "./components/Products/Products";
 import {useEffect, useState} from "react";
 import {useFetching} from "./hooks/useFetching";
 import SneakersService from "./utils/SneakersService";
-import axios from "axios";
 
 function App() {
 

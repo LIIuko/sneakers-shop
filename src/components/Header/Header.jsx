@@ -5,7 +5,6 @@ import cartImg from '../../assets/header/cart.svg'
 import likeImg from '../../assets/header/like.png'
 import profileImg from '../../assets/header/profile.svg'
 import HeaderButton from "../HeaderButon";
-import {openLike, openProfile} from "./index";
 import Cart from "../Cart/Cart";
 import {useSomeState} from "../../hooks/setState";
 
